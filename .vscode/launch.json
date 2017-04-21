@@ -4,11 +4,13 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
       "type": "node",
       "request": "launch",
       "name": "Launch index.js",
-      "program": "${workspaceRoot}/index.js"
+      "program": "${workspaceRoot}/index.js",
+      "args": ["ng1","c","tmp/search-control"]
     },
     {
       "type": "node",

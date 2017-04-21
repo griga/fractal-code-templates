@@ -5,7 +5,15 @@
             "{{name | kebab}}.{{type}}.less",
             "{{name | kebab}}.{{type}}.js",
             "{{name | kebab}}.{{type}}.html"
-         ]
+         ],
+         "aliases": ["c"] 
+      },
+
+      "servise": {
+         "files": [
+            "{{name | kebab}}.{{type}}.js"
+         ],
+         "aliases": ["s"] 
       }
     }
 }

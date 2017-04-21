@@ -1,16 +1,28 @@
 #!/usr/bin/env node
 
 const argv = require('yargs').argv;
+const mkdirp = require('mkdirp');
 const path = require('path');
 const fs  =require('fs');
 const _  =require('lodash');
 
 
-console.log(argv._);
+console.log('argv:  ', argv._);
+
+const cwd = process.cwd()
+
+console.log('cwd:  ', cwd);
+
 
 const group = argv._[0]
-const type = argv._[1]
-const name = argv._[2]
+const typeAlias = argv._[1]
+
+const nameArg = argv._[2]
+
+const nameArgMatch = nameArg.match(/([\s\S]+?)\/([^/]+?)$/)
+const subDir = nameArgMatch && nameArgMatch.length == 3 ? nameArgMatch[1]  : ''
+const name = nameArgMatch   && nameArgMatch.length == 3  ? nameArgMatch[2]  : nameArg
+
 const outputDirArg = argv._[3]
 
 
@@ -29,19 +41,29 @@ if(!fs.existsSync(groupFctFile)){
   throw new Error('Cannot find ' + group + ' fct.json config file')
 }
 
+
+
+
+
 const groupFctConf = require(groupFctFile)
-if(!groupFctConf.types[type]){
+
+const types = groupFctConf.types
+
+const type = _.keys(types).find(function(t){
+  return t == typeAlias || types[t].aliases.indexOf(typeAlias)>-1
+})
+
+if(!types[type]){
   throw new Error('Cannot find ' + type + ' type for ' + group + ' group')
 }
 
 
-
 const outputDir = (!outputDirArg || !fs.existsSync(outputDirArg)) ? 
-  (argv.flat ? __dirname  : path.resolve(__dirname, name) ) : 
-  (argv.flat ? outputDirArg : path.resolve(outputDirArg, name)) 
+  (argv.flat ?  path.resolve(cwd, subDir) : path.resolve(cwd, subDir,  name) ) : 
+  (argv.flat ? path.resolve(outputDirArg, subDir) : path.resolve(outputDirArg, subDir, name)) 
    
 if(!fs.existsSync(outputDir)){
-  fs.mkdirSync(outputDir)
+  mkdirp.sync(outputDir)
 }
 
 const modifiers = {
