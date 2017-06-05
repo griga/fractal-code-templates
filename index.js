@@ -10,7 +10,8 @@ require('./core/fct').run({
   nameArg: argv._[2], 
   outputDirArg: argv._[3],
   flat: argv.flat,
-  force: argv.force
+  force: argv.force,
+  prefix: argv.prefix,
 });
 
 

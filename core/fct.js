@@ -74,8 +74,6 @@ if(!types[type]){
 }
 
 
-modifiers.setup(options)
-
 const cwd = process.cwd()
 console.log('cwd:  ', cwd);
 
@@ -87,6 +85,8 @@ const outputDir = (!options.outputDirArg || !fs.existsSync(options.outputDirArg)
 if(!fs.existsSync(outputDir)){
   mkdirp.sync(outputDir)
 }
+
+modifiers.setup(options)
 
 
 groupFctConf.types[type].files.forEach(function(filename){

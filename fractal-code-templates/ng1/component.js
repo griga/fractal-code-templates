@@ -1,8 +1,8 @@
 
-const {{name | capitalize}} = {
+const {{name | camel | upperFirst}} = {
 
 
 }
 
 
-angular.module('app').component('{{name | capitalize}}', {{name | capitalize}})
+angular.module('app').component('{{name | camel | upperFirst | prefix}}', {{name | camel | upperFirst}})
