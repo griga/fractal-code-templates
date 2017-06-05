@@ -92,35 +92,28 @@ if(!fs.existsSync(outputDir)){
 groupFctConf.types[type].files.forEach(function(filename){
   
   
-  let outname =  filename.replace(/\{\{[\s\S]+?\}\}/gm, function(match){
-    
-    let out =  match.replace(/[\{\}]/gm, '').split('|').map(function(it){
-      return it.trim()
-    }).reduce(function(_out, modifier){
-      
-      return modifiers[modifier](_out)
-    }, '')
-    
-    
-    return out
-    
-    
-  })  
-
-  
+  let outname =  modifiers.process(filename);
 
   let filepath = path.resolve(outputDir, outname)
   console.log('outname', filepath);
-  
+
+
+  let ext  = outname.match(/(.[\w]+?)$/)[1]
+  let templatePath = path.resolve(groupDir, type + ext);
+
+  let rawContent = (fs.existsSync(templatePath)) ? fs.readFileSync(templatePath, 'utf8') : ''
+  let content =  modifiers.process(rawContent);
+ 
+   
   if(fs.existsSync(filepath)){
     if(options.force){
       fs.unlinkSync(filepath)
-      fs.writeFileSync(filepath, '')  
+      fs.writeFileSync(filepath, content)  
     } else {
       console.log('[do nothing] file already exists. use --force ')
     }
   } else {
-    fs.writeFileSync(filepath, '')
+    fs.writeFileSync(filepath, content)
   } 
   
   

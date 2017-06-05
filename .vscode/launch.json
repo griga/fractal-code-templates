@@ -10,7 +10,7 @@
       "request": "launch",
       "name": "test fct ng1 service",
       "program": "${workspaceRoot}/index.js",
-      "args": ["ng1","s","tmp/component/viewport", "--force"]
+      "args": ["ng1","c","tmp/component/viewport", "--force"]
     },
     {
       "type": "node",

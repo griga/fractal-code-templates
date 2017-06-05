@@ -1,8 +1,8 @@
 
-const `{{name | capitalize}}` = {
+const {{name | capitalize}} = {
 
 
 }
 
 
-angular.module('app').component(`{{name | capitalize}}`, `{{name | capitalize}}`)
+angular.module('app').component('{{name | capitalize}}', {{name | capitalize}})
