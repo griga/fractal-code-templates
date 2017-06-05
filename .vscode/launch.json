@@ -8,6 +8,13 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "test fct ng1 service",
+      "program": "${workspaceRoot}/index.js",
+      "args": ["ng1","s","tmp/component/viewport", "--force"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch index.js",
       "program": "${workspaceRoot}/index.js",
       "args": ["ng1","c","tmp/search-control"]
