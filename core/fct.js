@@ -38,7 +38,7 @@ const nameArgMatch = options.nameArg.match(/([\s\S]+?)\/([^/]+?)$/)
 const subDir = nameArgMatch && nameArgMatch.length == 3 ? nameArgMatch[1]  : ''
 
 // @field Subject Name
-const name = options.name = nameArgMatch   && nameArgMatch.length == 3  ? nameArgMatch[2]  : nameArg
+const name = options.name = nameArgMatch   && nameArgMatch.length == 3  ? nameArgMatch[2]  : options.nameArg
 
 
 
