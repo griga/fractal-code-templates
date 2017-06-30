@@ -39,6 +39,10 @@ const modifiers =  {
   prefix: function(str){
     return  state.prefix ? state.prefix + str : str
   },
+
+  tokenize: function(str){
+    return str.replace(/[^\w\d+]/gm, ' ')
+  },
   
   process: function(str){
     return str.replace(/\{\{[\s\S]+?\}\}/gm, function(match){
