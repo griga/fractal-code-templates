@@ -2,7 +2,7 @@
 
 const argv = require('yargs').argv;
 
-condolr.log('usage:   fct ng1 component contact-form' )
+console.log('usage:   fct ng1 component contact-form' )
 console.log('argv:  ', argv._);
 
 
