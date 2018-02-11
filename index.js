@@ -2,7 +2,9 @@
 
 const argv = require('yargs').argv;
 
+condolr.log('usage:   fct ng1 component contact-form' )
 console.log('argv:  ', argv._);
+
 
 require('./core/fct').run({
   group: argv._[0], 
